@@ -339,17 +339,17 @@
     var editor_cnt = 1, editor_index = 1, active_editor = 1, editor_session = [];
     var request, init_ts, open_file_name;
     var lang = 'python3';
-    default_content = "\
+    default_content =  "\
 \n\
 # Online Python - IDE, Editor, Compiler, Interpreter\n\
 \n\
-friends=["Anisur", "Abdullah", "Said", "Likhon"]\n\
+def sum(a, b):\n\
+    return (a + b)\n\
 \n\
+a = int(input('Enter 1st number: '))\n\
+b = int(input('Enter 2nd number: '))\n\
 \n\
-print(friends[0])\n\
-print(friends[1])\n\
-print(friends[2])\n\
-print(friends[3])\n\
+print(f'Sum of {a} and {b} is {sum(a, b)}')\n\
 ";
     var prev_result = 'in'; 
     var site_url = "https://www.online-python.com/"
