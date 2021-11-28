@@ -1,6 +1,80 @@
 
 <html lang="en">
 <head>
+    <style>
+        TABLE {
+  border-collapse: collapse;
+  font-family: arial;
+  border-color: #DDDDDD;
+  
+}
+TD, TH {
+  padding: 8px;
+  border-color: #DDDDDD;
+}
+
+.alternateTable tr:nth-child(even) {background-color: #efdeff;}
+.alternateTable td{
+   text-align:center; 
+    vertical-align:middle;
+}
+
+.alternateTable {
+      font-size: 16px;
+  background-color: #FFFFFF;
+}
+
+
+.alternateTable thead tr {
+background: linear-gradient(114deg, rgba(12, 12, 12, 0.09) 0%, rgba(12, 12, 12, 0.09) 50%,rgba(165, 165, 165, 0.09) 50%, rgba(165, 165, 165, 0.09) 100%),linear-gradient(175deg, rgba(109, 109, 109, 0.06) 0%, rgba(109, 109, 109, 0.06) 50%,rgba(223, 223, 223, 0.06) 50%, rgba(223, 223, 223, 0.06) 100%),linear-gradient(95deg, rgba(10, 10, 10, 0.02) 0%, rgba(10, 10, 10, 0.02) 50%,rgba(28, 28, 28, 0.02) 50%, rgba(28, 28, 28, 0.02) 100%),linear-gradient(48deg, rgba(78, 78, 78, 0.06) 0%, rgba(78, 78, 78, 0.06) 50%,rgba(191, 191, 191, 0.06) 50%, rgba(191, 191, 191, 0.06) 100%),linear-gradient(48deg, rgba(227, 227, 227, 0.08) 0%, rgba(227, 227, 227, 0.08) 50%,rgba(156, 156, 156, 0.08) 50%, rgba(156, 156, 156, 0.08) 100%),linear-gradient(253deg, rgba(34, 34, 34, 0.09) 0%, rgba(34, 34, 34, 0.09) 50%,rgba(155, 155, 155, 0.09) 50%, rgba(155, 155, 155, 0.09) 100%),linear-gradient(88deg, rgba(136, 136, 136, 0.09) 0%, rgba(136, 136, 136, 0.09) 50%,rgba(118, 118, 118, 0.09) 50%, rgba(118, 118, 118, 0.09) 100%),linear-gradient(160deg, rgba(187, 187, 187, 0.04) 0%, rgba(187, 187, 187, 0.04) 50%,rgba(152, 152, 152, 0.04) 50%, rgba(152, 152, 152, 0.04) 100%),linear-gradient(90deg, rgb(252, 45, 228),rgb(120, 16, 230)) !important;
+}
+
+.alternateTable TH {
+      color: white;
+  font-weight: normal;
+}
+
+BUTTON {
+  border: none;
+  margin: 2px;
+  color: white;
+  border-radius:4px;
+  background-color: rgb(160, 16, 230);
+  padding:4px 10px 4px 10px;
+  cursor: pointer;
+}
+BUTTON:hover {
+  opacity: 0.7;
+}
+
+H1 {
+  line-height: 20px;
+  text-align: center;
+  font-family: courier new;
+  color: #444444;
+}
+
+BODY {
+  background-color: #EEEEEE;
+}
+
+#footer {
+  text-align: center;
+  margin-top: 20px;
+  font-family: courier new;
+  border-top: 1px dashed #444444;
+  padding-top: 5px;
+}
+
+#footer A{
+  color: #444444;
+  text-decoration: none;
+  
+}
+</style>
+    
+    
+    
     <title>Online Python IDE</title>
 
     <meta charset="utf-8">
@@ -328,6 +402,38 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal --><br> <br>
+    
+    <H1>Trace Table</H1>  
+<TABLE id=traceTable width=100% class=alternateTable border=1>
+  <THEAD>
+    <TR>
+      <TH style="width:80px;">&nbsp;</TH>
+      <TH>Line Number</TH>
+      <TH contentEditable=true></TH>
+      <TH contentEditable=true>OUTPUT</TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+         
+    <TR>
+      <TD><BUTTON onclick=addRow(this);">+</BUTTON><BUTTON onclick="deleteRow(this);">-</BUTTON></TD>
+      <TD contentEditable=true>1</TD>
+      <TD contentEditable=true></TD>
+      <TD contentEditable=true></TD>
+    </TR>
+    <TR>
+      <TD><BUTTON onclick="addRow(this);">+</BUTTON><BUTTON onclick="deleteRow(this);">-</BUTTON></TD>
+      <TD contentEditable=true>2</TD>
+      <TD contentEditable=true></TD>
+      <TD contentEditable=true></TD>
+    </TR>  
+    <TR>
+      <TD></TD><TD><BUTTON onclick="addCol(this);">Add Column</BUTTON></TD>
+      <TD><BUTTON onclick="addCol(this);">+</BUTTON><BUTTON onclick="deleteCol(this);">-</BUTTON></TD>
+      <TD><BUTTON onclick="addCol(this);">+</BUTTON><BUTTON onclick="deleteCol(this);">-</BUTTON></TD>    
+    </TR>  
+  </TBODY>
+</TABLE>  
   
 <p><center><footer  style="background-color: #18B1F9;"><a style="font-size:20px; color:white;" href="https://github.com/anisurrahmanlikhon" target="_blank">Made By Md. Anisur Rahman Likhon</a><br></footer></center></p>
     </body>
@@ -657,6 +763,55 @@ print(f'Sum of {a} and {b} is {sum(a, b)}')\n\
     }
   })();
 </script>
+          
+          
+<script>
+           function addRow(el){ 
+  var rowIndex=el.parentNode.parentNode.rowIndex+1;
+  var newRow = el.parentNode.parentNode.parentNode.parentNode.insertRow(rowIndex);
+  var cols = el.parentNode.parentNode.parentNode.parentNode.rows[0].cells.length;
+  var newCell = newRow.insertCell(0);
+  newCell.innerHTML = el.parentNode.innerHTML;
+  for (var i=1;i<cols;i++) {
+    newCell = newRow.insertCell(i);
+    newCell.contentEditable=true;
+  }
+}
+
+function deleteRow(el){ 
+  var numberOfRows = el.parentNode.parentNode.parentNode.parentNode.rows.length;
+  if (numberOfRows>3) {
+var i = el.parentNode.parentNode.rowIndex;
+ el.parentNode.parentNode.parentNode.parentNode.deleteRow(i); 
+  } else {
+    alert("Cannot delete last row!")
+  }
+ }
+
+function deleteCol(el) {
+  var cellIndex = el.parentNode.cellIndex;
+  var rows = el.parentNode.parentNode.parentNode.parentNode.rows;
+  var numberOfRows = rows.length;
+  for (var i=0;i<numberOfRows;i++) {
+     rows[i].deleteCell(cellIndex);
+  }
+}
+
+function addCol(el) {
+  var cellIndex = el.parentNode.cellIndex+1;
+  var rows = el.parentNode.parentNode.parentNode.parentNode.rows;
+  var numberOfRows = rows.length;
+  var newCell;
+  for (var i=0;i<numberOfRows-1;i++) {
+    newCell = rows[i].insertCell(cellIndex);
+    newCell.contentEditable=true;
+  }
+  newCell = rows[i].insertCell(cellIndex);
+  newCell.innerHTML = '<BUTTON onclick="addCol(this);">+</BUTTON><BUTTON onclick="deleteCol(this);">-</BUTTON>';
+}
+          
+          
+          </script>
 
 <!-- Go to www.addthis.com/dashboard to customize your tools --> 
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e908e7d111adc12"></script> 
